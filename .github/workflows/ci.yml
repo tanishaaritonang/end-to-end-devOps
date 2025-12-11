@@ -18,7 +18,8 @@ jobs:
           echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
       - name: Build Docker Image
         run: |
-          docker build -t tanishaart/complete-devops-project:${{ env.SHORT_SHA }} .
+          docker build -t tanishaart/complete-devops-project:${{ env.SHORT_SHA }} \
+            -f terraform-config/Dockerfile terraform-config/
       - name: Login to Dockerhub
         run: |
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
