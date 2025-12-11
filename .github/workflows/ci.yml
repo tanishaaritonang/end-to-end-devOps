@@ -21,7 +21,9 @@ jobs:
         run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Build Docker image
+        working-directory: ./
         run: |
+          ls -la  # Debug: list files in current directory
           docker build -t tanishaart/complete-end-to-end-devops:${{ env.SHORT_SHA }} .
 
       - name: Login to DockerHub
