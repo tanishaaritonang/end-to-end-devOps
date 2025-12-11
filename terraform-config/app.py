@@ -10,4 +10,4 @@ def get_CurrentTime():
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080)
 
-    # Run the Flask app on all available IPs on port 8080
+    # Run the Flask app on all available IPs on port 80800
