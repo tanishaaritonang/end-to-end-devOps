@@ -3,7 +3,7 @@ image:
   tag: 37a5603
   pullPolicy: IfNotPresent
 service: 
-  type: clusterIP
+  type: ClusterIP
   port: 8080
 ingress:
   enabled: false
@@ -12,4 +12,4 @@ serviceAccount:
 autoscaling:
   enabled: false
 httpRoute:
-  enabled: true
+  enabled: false
