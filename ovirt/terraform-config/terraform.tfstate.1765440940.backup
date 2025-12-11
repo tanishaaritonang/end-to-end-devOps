@@ -1,0 +1,67 @@
+{
+  "version": 4,
+  "terraform_version": "1.12.2",
+  "serial": 13,
+  "lineage": "c20d2512-3f25-979d-678b-2c894e70dcc3",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "kubernetes_namespace",
+      "name": "example",
+      "provider": "provider[\"registry.terraform.io/hashicorp/kubernetes\"].mk",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "dev",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": null,
+                "name": "dev",
+                "resource_version": "1851",
+                "uid": "7dc977bc-7cef-4286-981b-2f5f0eb8ceff"
+              }
+            ],
+            "timeouts": null,
+            "wait_for_default_service_account": false
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "v1",
+            "kind": "Namespace",
+            "name": "dev"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjozMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "null_resource.minikube"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "null_resource",
+      "name": "minikube",
+      "provider": "provider[\"registry.terraform.io/hashicorp/null\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "6054437342062621944",
+            "triggers": {
+              "always_run": "2025-12-11T02:53:03Z"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

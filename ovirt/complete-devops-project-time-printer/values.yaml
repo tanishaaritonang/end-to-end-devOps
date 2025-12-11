@@ -1,0 +1,15 @@
+image:
+  repository: tanishaart/complete-devops-project
+  tag: c27f3f8
+  pullPolicy: IfNotPresent
+service: 
+  type: ClusterIP
+  port: 8080
+ingress:
+  enabled: false
+serviceAccount:
+  enabled: false
+autoscaling:
+  enabled: false
+httpRoute:
+  enabled: false
