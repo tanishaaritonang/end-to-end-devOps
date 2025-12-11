@@ -1,41 +1,27 @@
 ---
-name: Complete end to end devops
+
+name: Complete DevOps Project Pipeline
 
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches:
-      - master
+      - main
 
-jobs:
+jobs: 
   build_and_push:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set short SHA
-        run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
-
-      - name: Build Docker image
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Set Short SHA
         run: |
-          pwd  # Show current directory
-          ls -la  # List all files
-          ls -la terraform-config/  # List terraform-config contents
-          echo "--- Contents of root Dockerfile ---"
-          cat Dockerfile || echo "Cannot read Dockerfile in root"
-          echo "--- Contents of terraform-config Dockerfile ---"
-          cat terraform-config/Dockerfile || echo "Cannot read Dockerfile in terraform-config"
-          echo "Building from root directory..."
-          docker build -t tanishaart/complete-end-to-end-devops:${{ env.SHORT_SHA }} .
-
-      - name: Login to DockerHub
+          echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
+      - name: Build Docker Image
         run: |
-          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-      - name: Push Docker image to DockerHub
+          docker build -t tanishaart/complete-devops-project:${{ env.SHORT_SHA }} .
+      - name: Login to Dockerhub
         run: |
-          docker push tanishaart/complete-end-to-end-devops:${{ env.SHORT_SHA }}
-    
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+      - name: Push to Dockerhub
+        run: |
+          docker push tanishaart/complete-devops-project:${{ env.SHORT_SHA }}
