@@ -1,30 +1,29 @@
----
-
 name: Complete DevOps Project Pipeline
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs: 
   build_and_push:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+
       - name: Set Short SHA
-        run: |
-          echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
-      - name: Build Docker Image
-        run: |
-           docker build \
-            -t tanishaart/complete-end-to-end-devops:${{ env.SHORT_SHA }} \
-            -f terraform-config/Dockerfile terraform-config/
+        run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Login to Dockerhub
         run: |
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-      - name: Push to Dockerhub
+
+      - name: Build Docker Image
         run: |
-          docker push tanishaart/complete-devops-project:${{ env.SHORT_SHA }}
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/complete-devops-project:${{ env.SHORT_SHA }} .
+
+      - name: Push Docker Image
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/complete-devops-project:${{ env.SHORT_SHA }}
