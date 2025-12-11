@@ -1,6 +1,6 @@
 image:
   repository: tanishaart/complete-devops-project
-  tag: 7d023b4
+  tag: c27f3f8
   pullPolicy: IfNotPresent
 service: 
   type: ClusterIP
