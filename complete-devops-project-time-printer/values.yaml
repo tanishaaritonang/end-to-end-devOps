@@ -11,3 +11,5 @@ serviceAccount:
   enabled: false
 autoscaling:
   enabled: false
+httpRoute:
+  enabled: true

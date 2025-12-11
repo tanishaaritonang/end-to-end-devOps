@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: complete-devops
+  name: complete-devopss
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/tanishaaritonang/end-to-end-devOps/tree/master'
-    targetRevision: HEAD
+    repoURL: 'https://github.com/tanishaaritonang/end-to-end-devOps.git'
+    targetRevision: master
     path: complete-devops-project-time-printer
   destination:
     server: 'https://kubernetes.default.svc'
