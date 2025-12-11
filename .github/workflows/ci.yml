@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd terraform-config && docker build -t tanishaart/complete-end-to-end-devops:${{ env.SHORT_SHA }} .
+          docker build -f terraform-config/Dockerfile -t tanishaart/complete-end-to-end-devops:${{ env.SHORT_SHA }} ./terraform-config
 
       - name: Login to DockerHub
         run: |
