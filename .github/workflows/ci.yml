@@ -15,7 +15,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./ovirt
+        working-directory: ./ovirt/terraform-config
 
     steps:
       - name: Checkout repository
